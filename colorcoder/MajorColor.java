@@ -15,15 +15,8 @@ public enum MajorColor implements Color {
         this.name = name;
     }
 
-    @Override
-    public int getIndex() {
-        return index;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
+    @Override public int getIndex() { return index; }
+    @Override public String getName() { return name; }
 
     public static MajorColor fromIndex(int index) {
         return Color.fromIndex(values(), index);
