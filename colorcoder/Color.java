@@ -5,11 +5,9 @@ public interface Color {
     String getName();
 
     static <T extends Enum<T> & Color> T fromIndex(T[] values, int index) {
-        for (T color : values) {
-            if (color.getIndex() == index) {
-                return color;
-            }
+        if (index < 0 || index >= values.length) {
+            throw new IllegalArgumentException("Invalid index: " + index);
         }
-        throw new IllegalArgumentException("Invalid index: " + index);
+        return values[index];
     }
 }
