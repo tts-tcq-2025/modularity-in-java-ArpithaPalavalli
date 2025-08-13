@@ -1,20 +1,16 @@
 package colorcoder;
 
 public class ColorCodingManual {
-    public static String generateManual() {
-        StringBuilder manual = new StringBuilder();
-        manual.append("Color Code Reference Manual:\n");
-        manual.append("Pair Number | Major Color | Minor Color\n");
-        manual.append("----------------------------------------\n");
-
-        int totalPairs = ColorCoding.NUMBER_OF_MAJOR_COLORS * ColorCoding.NUMBER_OF_MINOR_COLORS;
-        for (int pairNumber = 1; pairNumber <= totalPairs; pairNumber++) {
-            ColorPair pair = ColorCoding.getColorFromPairNumber(pairNumber);
-            manual.append(String.format("%-11d | %-11s | %-11s%n",
-                    pairNumber,
-                    pair.getMajor().getName(),
-                    pair.getMinor().getName()));
+    public static String generate() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Pair | Major | Minor\n");
+        sb.append("--------------------\n");
+        int total = ColorCoding.MAJOR_COUNT * ColorCoding.MINOR_COUNT;
+        for (int i = 1; i <= total; i++) {
+            ColorPair p = ColorCoding.getColorFromPairNumber(i);
+            sb.append(String.format("%-4d | %-5s | %-5s%n",
+                i, p.getMajor().getName(), p.getMinor().getName()));
         }
-        return manual.toString();
+        return sb.toString();
     }
 }
