@@ -1,17 +1,18 @@
 package colorcoder;
 
 public class ColorCoding {
-    public static final int NUMBER_OF_MAJOR_COLORS = MajorColor.values().length;
-    public static final int NUMBER_OF_MINOR_COLORS = MinorColor.values().length;
+    public static final int MAJOR_COUNT = MajorColor.values().length;
+    public static final int MINOR_COUNT = MinorColor.values().length;
 
     public static ColorPair getColorFromPairNumber(int pairNumber) {
-        int zeroBasedPairNumber = pairNumber - 1;
-        MajorColor majorColor = MajorColor.fromIndex(zeroBasedPairNumber / NUMBER_OF_MINOR_COLORS);
-        MinorColor minorColor = MinorColor.fromIndex(zeroBasedPairNumber % NUMBER_OF_MINOR_COLORS);
-        return new ColorPair(majorColor, minorColor);
+        int zeroIndex = pairNumber - 1;
+        return new ColorPair(
+            MajorColor.fromIndex(zeroIndex / MINOR_COUNT),
+            MinorColor.fromIndex(zeroIndex % MINOR_COUNT)
+        );
     }
 
     public static int getPairNumberFromColor(MajorColor major, MinorColor minor) {
-        return major.getIndex() * NUMBER_OF_MINOR_COLORS + minor.getIndex() + 1;
+        return major.getIndex() * MINOR_COUNT + minor.getIndex() + 1;
     }
 }
